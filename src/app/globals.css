@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-50 text-neutral-900 antialiased transition-colors duration-300;
+  }
+
+  :root.dark body {
+    @apply bg-neutral-950 text-neutral-100;
+  }
+
+  /* ... autofill styles ... */
+  /* Light Mode */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #f5f5f5 inset !important;
+    -webkit-text-fill-color: #171717 !important;
+    caret-color: #171717 !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* Dark Mode */
+  :root.dark input:-webkit-autofill,
+  :root.dark input:-webkit-autofill:hover,
+  :root.dark input:-webkit-autofill:focus,
+  :root.dark textarea:-webkit-autofill,
+  :root.dark textarea:-webkit-autofill:hover,
+  :root.dark textarea:-webkit-autofill:focus,
+  :root.dark select:-webkit-autofill,
+  :root.dark select:-webkit-autofill:hover,
+  :root.dark select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #0a0a0a inset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    caret-color: #ffffff !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+/* Animations for Cyberpunk Glitch & Mission Passed */
+@layer utilities {
+  @keyframes glitch-skew {
+    0% {
+      transform: skew(0deg);
+    }
+
+    20% {
+      transform: skew(-2deg);
+    }
+
+    40% {
+      transform: skew(2deg);
+    }
+
+    60% {
+      transform: skew(-1deg);
+    }
+
+    80% {
+      transform: skew(1deg);
+    }
+
+    100% {
+      transform: skew(0deg);
+    }
+  }
+
+  @keyframes rgb-split {
+    0% {
+      text-shadow: -2px 0 #ff00c1, 2px 0 #00fff9;
+    }
+
+    25% {
+      text-shadow: -2px 0 #00fff9, 2px 0 #ff00c1;
+    }
+
+    50% {
+      text-shadow: -1px 0 #ff00c1, 1px 0 #00fff9;
+    }
+
+    75% {
+      text-shadow: 1px 0 #ff00c1, -1px 0 #00fff9;
+    }
+
+    100% {
+      text-shadow: -2px 0 #ff00c1, 2px 0 #00fff9;
+    }
+  }
+
+  .animate-glitch {
+    animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite,
+      rgb-split 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  }
+  
+  /* Fade In Up Animation for Hero */
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+      animation: fade-in 1s ease-out forwards;
+  }
+  
+  .delay-100 {
+      animation-delay: 100ms;
+  }
+  
+  .delay-200 {
+      animation-delay: 200ms;
+  }
+  
+  .delay-300 {
+      animation-delay: 300ms;
+  }
+
+  /* Mission Passed Text Style */
+  @font-face {
+    font-family: 'Pricedown';
+    src: url('/fonts/pricedown_bl.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .font-mission {
+    font-family: 'Pricedown', 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2px;
+    background: linear-gradient(180deg, #F4A949 0%, #B96608 100%);
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 1px #000;
+    color: transparent;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+  }
+}
