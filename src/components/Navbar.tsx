@@ -136,6 +136,14 @@ export default function Navbar() {
                                 ))}
                             </div>
                         </div>
+
+                        <Link
+                            href="https://whatsa.me/5561994503567/?t=Ol%C3%A1,%20Pablo!%20Estou%20buscando%20um%20especialista%20em%20Desenvolvimento%20Web%20para%20uma%20demanda%20espec%C3%ADfica.%20Podemos%20falar?"
+                            target="_blank"
+                            className="w-full text-center px-4 py-3 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-full transition-all shadow-lg shadow-red-600/20 mt-2"
+                        >
+                            {t.nav.hireMe}
+                        </Link>
                     </div>
                 </div>
             )}
