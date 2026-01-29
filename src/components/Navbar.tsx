@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -14,54 +14,98 @@ import { useLanguage, languagesList } from "@/context/LanguageContext";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [langOpen, setLangOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
     const { currentLang, setLanguage, t } = useLanguage();
     const pathname = usePathname();
 
+    // Scroll effect for glassmorphism
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Menu Items
+    const navItems = [
+        { label: t.nav?.home || "Home", href: "/" },
+        { label: t.nav?.solutions || "Soluções", href: "/#services" },
+        { label: t.nav?.portfolio || "Portfólio", href: "/projects" }, // Using explicit route for projects
+        { label: t.nav?.investment || "Investimento", href: "/#investment" },
+        { label: t.nav?.faq || "FAQ", href: "/#faq" },
+    ];
+
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/80 backdrop-blur-md border-b border-neutral-800 transition-colors duration-300 dark:bg-neutral-950/80 dark:border-neutral-800 bg-white/80 border-neutral-200">
-            <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <nav
+            className={clsx(
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                scrolled
+                    ? "bg-white/70 dark:bg-neutral-950/70 backdrop-blur-xl border-b border-neutral-200 dark:border-neutral-800 h-16 shadow-lg shadow-neutral-500/5"
+                    : "bg-transparent border-transparent h-24"
+            )}
+        >
+            <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-1 group">
-                    <span className="text-red-600 font-bold text-xl tracking-tight">{"{"}</span>
-                    <span className="text-neutral-900 dark:text-white font-bold text-xl tracking-tight group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">notcostaip</span>
-                    <span className="text-red-600 font-bold text-xl tracking-tight">{"}"}</span>
+                <Link href="/" className="flex items-center gap-1 group relative z-10">
+                    <span className="text-red-600 font-bold text-xl tracking-tight transition-transform group-hover:-translate-x-1">{"{"}</span>
+                    <span className="text-neutral-900 dark:text-white font-bold text-xl tracking-tight">notcostaip</span>
+                    <span className="text-red-600 font-bold text-xl tracking-tight transition-transform group-hover:translate-x-1">{"}"}</span>
                 </Link>
 
                 {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <Link
-                        href="/"
-                        className={clsx(
-                            "transition-colors hover:text-red-600 dark:hover:text-red-400",
-                            pathname === "/" ? "text-neutral-900 dark:text-white" : "text-neutral-500 dark:text-neutral-400"
-                        )}
-                    >
-                        Home
-                    </Link>
-                    <Link
-                        href="/projects"
-                        className={clsx(
-                            "transition-colors hover:text-red-600 dark:hover:text-red-400",
-                            pathname.startsWith("/projects") ? "text-neutral-900 dark:text-white" : "text-neutral-500 dark:text-neutral-400"
-                        )}
-                    >
-                        {t.hero.projects}
-                    </Link>
-                    <Link
-                        href="/#contact"
-                        className="text-neutral-500 dark:text-neutral-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
-                    >
-                        {t.hero.contact}
-                    </Link>
+                <div className="hidden md:flex items-center gap-1 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-md px-2 py-1.5 rounded-full border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm">
+                    {navItems.map((item, idx) => (
+                        <Link
+                            key={idx}
+                            href={item.href}
+                            // Using standard anchor behavior for hashes to avoid Next.js routing delay on same page
+                            // Optimized smooth scroll handler
+                            onClick={(e) => {
+                                // Special case for Home (scroll to top)
+                                if (item.href === "/" && pathname === "/") {
+                                    e.preventDefault();
+                                    window.scrollTo({ top: 0, behavior: "auto" });
+                                    return;
+                                }
+
+                                if (item.href.startsWith("/#")) {
+                                    e.preventDefault();
+                                    const targetId = item.href.replace("/#", "");
+                                    const elem = document.getElementById(targetId);
+
+                                    if (elem) {
+                                        // Instant scroll for maximum performance feel
+                                        const headerOffset = 80;
+                                        const elementPosition = elem.getBoundingClientRect().top;
+                                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                                        window.scrollTo({
+                                            top: offsetPosition,
+                                            behavior: "auto"
+                                        });
+                                    } else {
+                                        // Fallback if element not found or different page
+                                        window.location.href = item.href;
+                                    }
+                                }
+                            }}
+                            className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all relative group rounded-full hover:bg-white dark:hover:bg-neutral-800 cursor-pointer"
+                        >
+                            {item.label}
+                            {/* Hover Micro-interaction */}
+                            <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 rounded-full transition-all group-hover:w-1/2 opacity-0 group-hover:opacity-100"></span>
+                        </Link>
+                    ))}
                 </div>
 
                 {/* Right Actions */}
-                <div className="hidden md:flex items-center gap-4">
+                <div className="hidden md:flex items-center gap-3">
                     {/* Language Selector */}
                     <div className="relative">
                         <button
                             onClick={() => setLangOpen(!langOpen)}
-                            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-neutral-100 dark:bg-neutral-900/50 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-400 dark:hover:border-neutral-700 text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-all text-xs font-medium"
+                            className="flex items-center gap-2 px-3 py-2 rounded-full bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-300 transition-colors text-xs font-medium"
                             aria-label="Select language"
                         >
                             {currentLang.code}
@@ -79,7 +123,7 @@ export default function Navbar() {
                                             setLanguage(lang.code);
                                             setLangOpen(false);
                                         }}
-                                        className="w-full text-left px-4 py-2 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-red-500 dark:hover:text-white transition-colors flex items-center justify-between group"
+                                        className="w-full text-left px-4 py-2 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-red-500 dark:hover:text-white transition-colors flex items-center justify-between"
                                     >
                                         {lang.label}
                                         {currentLang.code === lang.code && <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>}
@@ -89,64 +133,60 @@ export default function Navbar() {
                         )}
                     </div>
 
-                    {/* Hire Me Button (Small) */}
-                    <Link href="https://whatsa.me/5561994503567/?t=Ol%C3%A1,%20Pablo!%20Estou%20buscando%20um%20especialista%20em%20Desenvolvimento%20Web%20para%20uma%20demanda%20espec%C3%ADfica.%20Podemos%20falar?" target="_blank" className="ml-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-all shadow-lg shadow-red-600/20">
-                        {t.nav.hireMe}
+                    {/* Hire Me Button */}
+                    <Link
+                        href="https://wa.me/5561994503567?text=Ol%C3%A1%2C%20Pablo!%20Estou%20buscando%20um%20especialista%20em%20Desenvolvimento%20Web%20para%20uma%20demanda%20espec%C3%ADfica.%20Podemos%20falar%3F"
+                        target="_blank"
+                        className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-all shadow-lg shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-0.5"
+                    >
+                        {t.nav?.hireMe || "Contrate-me"}
                     </Link>
                 </div>
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white relative w-10 h-10 flex items-center justify-center"
+                    className="md:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white relative z-50"
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label="Toggle menu"
                 >
-                    <div className={clsx("absolute transition-all duration-300 transform", isOpen ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100")}>
-                        <Menu size={24} />
-                    </div>
-                    <div className={clsx("absolute transition-all duration-300 transform", isOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-50")}>
-                        <X size={24} />
-                    </div>
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
-            {/* Mobile Menu */}
-            {isOpen && (
-                <div
-                    className="md:hidden border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 shadow-lg animate-fade-in"
-                >
-                    <div className="flex flex-col p-6 gap-4">
-                        <Link onClick={() => setIsOpen(false)} href="/" className="text-neutral-600 dark:text-neutral-300 hover:text-red-500 font-medium">Home</Link>
-                        <Link onClick={() => setIsOpen(false)} href="/projects" className="text-neutral-600 dark:text-neutral-300 hover:text-red-500 font-medium">{t.hero.projects}</Link>
-                        <Link onClick={() => setIsOpen(false)} href="/#contact" className="text-neutral-600 dark:text-neutral-300 hover:text-red-500 font-medium">{t.hero.contact}</Link>
-
-                        <div className="h-px bg-neutral-200 dark:bg-neutral-800 my-2"></div>
-
-                        <div className="flex items-center justify-between text-neutral-600 dark:text-neutral-400">
-                            <span className="text-sm">Language</span>
-                            <div className="flex gap-2">
-                                {languagesList.map(l => (
-                                    <button
-                                        key={l.code}
-                                        onClick={() => setLanguage(l.code)}
-                                        className={clsx("text-xs px-2 py-1 rounded", currentLang.code === l.code ? "bg-red-600 text-white" : "bg-neutral-100 dark:bg-neutral-900")}
-                                    >
-                                        {l.code}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
+            {/* Mobile Menu Overlay */}
+            <div
+                className={clsx(
+                    "fixed inset-0 bg-white dark:bg-neutral-950 z-40 flex flex-col pt-24 px-6 transition-transform duration-300 md:hidden",
+                    isOpen ? "translate-x-0" : "translate-x-full"
+                )}
+            >
+                <div className="flex flex-col gap-6 text-center">
+                    {navItems.map((item, idx) => (
                         <Link
-                            href="https://whatsa.me/5561994503567/?t=Ol%C3%A1,%20Pablo!%20Estou%20buscando%20um%20especialista%20em%20Desenvolvimento%20Web%20para%20uma%20demanda%20espec%C3%ADfica.%20Podemos%20falar?"
-                            target="_blank"
-                            className="w-full text-center px-4 py-3 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-full transition-all shadow-lg shadow-red-600/20 mt-2"
+                            key={idx}
+                            onClick={() => setIsOpen(false)}
+                            href={item.href}
+                            className="text-2xl font-bold text-neutral-800 dark:text-white hover:text-red-600 transition-colors"
                         >
-                            {t.nav.hireMe}
+                            {item.label}
                         </Link>
+                    ))}
+
+                    <div className="h-px bg-neutral-200 dark:bg-neutral-800 my-4"></div>
+
+                    <div className="flex justify-center gap-4">
+                        {languagesList.map(l => (
+                            <button
+                                key={l.code}
+                                onClick={() => setLanguage(l.code)}
+                                className={clsx("text-sm px-4 py-2 rounded-full border", currentLang.code === l.code ? "bg-red-600 text-white border-red-600" : "bg-transparent border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400")}
+                            >
+                                {l.code}
+                            </button>
+                        ))}
                     </div>
                 </div>
-            )}
+            </div>
         </nav>
     );
 }

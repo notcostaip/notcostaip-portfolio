@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning className="scroll-smooth">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased bg-gray-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 transition-colors duration-300`}>
         <LanguageProvider>
           <Navbar />

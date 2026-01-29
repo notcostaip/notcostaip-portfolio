@@ -3,9 +3,9 @@
 import { projects } from "@/data/projectsData";
 import { ArrowRight, Layout } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function ProjectsPage() {
     const { t, language } = useLanguage();
@@ -15,29 +15,22 @@ export default function ProjectsPage() {
 
             {/* Header */}
             <div className="max-w-6xl mx-auto mb-16">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mb-6"
-                >
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                        {t.projectsPage.title.split(" ")[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">{t.projectsPage.title.split(" ").slice(1).join(" ")}</span>
-                    </h1>
-                    <p className="text-neutral-400 text-lg max-w-2xl leading-relaxed">
-                        {t.projectsPage.description}
-                    </p>
-                </motion.div>
+                <ScrollReveal>
+                    <div className="mb-6">
+                        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                            {t.projectsPage.title.split(" ")[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">{t.projectsPage.title.split(" ").slice(1).join(" ")}</span>
+                        </h1>
+                        <p className="text-neutral-400 text-lg max-w-2xl leading-relaxed">
+                            {t.projectsPage.description}
+                        </p>
+                    </div>
+                </ScrollReveal>
             </div>
 
             {/* Projects Grid */}
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                 {projects.map((project, index) => (
-                    <motion.div
-                        key={project.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                    >
+                    <ScrollReveal key={project.id} delay={index * 100}>
                         <Link
                             href={`/projects/${project.slug}`}
                             className="group block bg-neutral-900/30 border border-neutral-800/50 rounded-3xl overflow-hidden hover:border-red-500/30 transition-all duration-500 hover:bg-neutral-900/50"
@@ -88,7 +81,7 @@ export default function ProjectsPage() {
                                 </div>
                             </div>
                         </Link>
-                    </motion.div>
+                    </ScrollReveal>
                 ))}
             </div>
         </div>
