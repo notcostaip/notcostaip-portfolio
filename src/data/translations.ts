@@ -3,6 +3,7 @@ export type Language = "PT" | "EN" | "ES" | "FR" | "ZH";
 export const translations = {
     PT: {
         nav: {
+            whatsappMessage: "Olá, Pablo! Estou buscando um especialista em Desenvolvimento Web para uma demanda específica. Podemos falar?",
             home: "Home",
             solutions: "Soluções",
             portfolio: "Portfólio",
@@ -18,6 +19,9 @@ export const translations = {
             projects: "Ver Projetos"
         },
         investment: {
+            cta: "Solicitar Orçamento",
+            priceSuffix: "/único",
+            whatsappMessage: "Olá, Pablo! Tenho interesse no pacote {0} {1}. Podemos negociar?",
             title: "Investimento Único",
             subtitle: "Projetos entregues prontos para usar. Sem mensalidades ocultas.",
             disclaimer: "Valores estimados baseados em escopos padrão. Podemos negociar e adaptar o pacote para caber no orçamento do seu momento atual.",
@@ -103,6 +107,7 @@ export const translations = {
         },
         faq: {
             title: "Perguntas Frequentes",
+            description: "Tudo o que você precisa saber sobre o desenvolvimento.",
             items: [
                 {
                     question: "Qual a diferença entre um site comum e Alta Performance?",
@@ -187,6 +192,7 @@ export const translations = {
     },
     EN: {
         nav: {
+            whatsappMessage: "Hello Pablo! I am looking for a Web Development specialist for a specific demand. Can we talk?",
             home: "Home",
             solutions: "Solutions",
             portfolio: "Portfolio",
@@ -202,6 +208,9 @@ export const translations = {
             projects: "View Projects"
         },
         investment: {
+            cta: "Request Quote",
+            priceSuffix: "/one-time",
+            whatsappMessage: "Hello Pablo! I am interested in the package {0} {1}. Can we negotiate?",
             title: "One-time Investment",
             subtitle: "Projects delivered ready to use. No hidden fees.",
             disclaimer: "Estimated values based on standard scopes. We can negotiate and adapt the package to fit your current budget.",
@@ -287,6 +296,7 @@ export const translations = {
         },
         faq: {
             title: "Frequently Asked Questions",
+            description: "Everything you need to know about development.",
             items: [
                 {
                     question: "Difference between common vs High Performance site?",
@@ -371,6 +381,7 @@ export const translations = {
     },
     ES: {
         nav: {
+            whatsappMessage: "¡Hola Pablo! Busco un especialista en Desarrollo Web para una demanda específica. ¿Podemos hablar?",
             home: "Inicio",
             solutions: "Soluciones",
             portfolio: "Portafolio",
@@ -386,6 +397,9 @@ export const translations = {
             projects: "Ver Proyectos"
         },
         investment: {
+            cta: "Solicitar Presupuesto",
+            priceSuffix: "/único",
+            whatsappMessage: "¡Hola Pablo! Estoy interesado en el paquete {0} {1}. ¿Podemos negociar?",
             title: "Inversión Única",
             subtitle: "Proyectos entregados listos para usar. Sin tarifas ocultas.",
             disclaimer: "Valores estimados basados en alcances estándar. Podemos negociar y adaptar el paquete para ajustarse a su presupuesto actual.",
@@ -471,6 +485,7 @@ export const translations = {
         },
         faq: {
             title: "Preguntas Frecuentes",
+            description: "Todo lo que necesitas saber sobre el desarrollo.",
             items: [
                 {
                     question: "¿Diferencia vs sitio común?",
@@ -555,6 +570,7 @@ export const translations = {
     },
     FR: {
         nav: {
+            whatsappMessage: "Bonjour Pablo ! Je cherche un spécialiste en Développement Web pour une demande spécifique. On peut discuter ?",
             home: "Accueil",
             solutions: "Solutions",
             portfolio: "Portfolio",
@@ -570,6 +586,9 @@ export const translations = {
             projects: "Voir Projets"
         },
         investment: {
+            cta: "Demander un Devis",
+            priceSuffix: "/unique",
+            whatsappMessage: "Bonjour Pablo ! Je suis intéressé par le forfait {0} {1}. On peut négocier ?",
             title: "Investissement Unique",
             subtitle: "Projets livrés clés en main. Pas de frais cachés.",
             disclaimer: "Valeurs estimées basées sur des périmètres standard. Nous pouvons négocier et adapter le forfait à votre budget actuel.",
@@ -655,6 +674,7 @@ export const translations = {
         },
         faq: {
             title: "Questions Fréquentes",
+            description: "Tout ce que vous devez savoir sur le développement.",
             items: [
                 {
                     question: "Différence vs site commun?",
@@ -739,6 +759,7 @@ export const translations = {
     },
     ZH: {
         nav: {
+            whatsappMessage: "你好 Pablo！这是为了特定需求寻找 Web 开发专家。我们能谈谈吗？",
             home: "首页",
             solutions: "解决方案",
             portfolio: "投资组合",
@@ -754,6 +775,9 @@ export const translations = {
             projects: "查看项目"
         },
         investment: {
+            cta: "请求报价",
+            priceSuffix: "/一次性",
+            whatsappMessage: "你好 Pablo！我对这个套餐感兴趣 {0} {1}。我们可以通过谈判？",
             title: "一次性投资",
             subtitle: "项目交付即可使用。无隐藏费用。",
             disclaimer: "估值基于标准范围。我们可以协商并调整套餐以适应您当前的预算。",
@@ -839,6 +863,7 @@ export const translations = {
         },
         faq: {
             title: "常见问题",
+            description: "您需要了解的有关开发的所有信息。",
             items: [
                 {
                     question: "与普通网站的区别？",

@@ -24,7 +24,7 @@ import AboutMe from "@/components/AboutMe";
 
 // Dynamic Components for Performance
 const Pricing = dynamic(() => import("@/components/Pricing"));
-const Investment = dynamic(() => import("@/components/Investment"));
+const InvestmentSection = dynamic(() => import("@/components/PricingAndFooter"));
 
 export default function Home() {
   const { t } = useLanguage();
@@ -47,7 +47,7 @@ export default function Home() {
           >
             {t.hero.greeting} <span className="text-neutral-900 dark:text-white">Pablo</span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">{t.hero.role}</span>
+            <span className="text-red-500">{t.hero.role}</span>
           </h1>
 
           <p
@@ -94,16 +94,18 @@ export default function Home() {
         <ProcessTimeline />
       </div>
 
-      {/* Investment Section (One-off) */}
-      <Investment />
 
-      {/* Maintenance Pricing */}
+
+      {/* 1. Investment Section (Unique) */}
+      <InvestmentSection />
+
+      {/* 2. Maintenance Pricing */}
       <Pricing />
 
-      {/* FAQ Section */}
+      {/* 3. FAQ Section */}
       <FAQ />
 
-      {/* CTA / Footer Section */}
+      {/* 4. Contact Form */}
       <section id="contact" className="py-24 px-6 relative">
         <div className="max-w-4xl mx-auto text-center mb-16">
           <ScrollReveal>
@@ -114,7 +116,7 @@ export default function Home() {
 
             <h2 className="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-6 tracking-tight">
               {t.contact.title} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-rose-400">{t.contact.subtitle}</span>
+              <span className="text-red-500">{t.contact.subtitle}</span>
             </h2>
 
             <p className="text-xl text-neutral-600 dark:text-neutral-400 mb-2">{t.contact.desc}</p>
@@ -174,7 +176,7 @@ export default function Home() {
                   />
                 </div>
 
-                <button type="submit" className="w-full py-3.5 bg-neutral-900 dark:bg-white text-white dark:text-neutral-950 font-bold rounded-xl hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors flex items-center justify-center gap-2 mt-2">
+                <button type="submit" className="w-full py-3.5 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 transition-colors flex items-center justify-center gap-2 mt-2 shadow-lg shadow-red-500/20">
                   {t.contact.form.submit} <ArrowRight size={18} />
                 </button>
               </form>
@@ -188,7 +190,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* 5. Footer */}
       <footer className="py-8 px-6 border-t border-neutral-200 dark:border-neutral-900 bg-white/50 dark:bg-neutral-950">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-sm text-neutral-500 dark:text-neutral-500">
           {/* Left: Role */}
@@ -205,7 +207,7 @@ export default function Home() {
 
           {/* Right: Copyright */}
           <div className="text-center md:text-right order-3">
-            &copy; 2025 Costa. {t.footer.rights}
+            &copy; 2026 Costa. {t.footer.rights}
           </div>
         </div>
       </footer>

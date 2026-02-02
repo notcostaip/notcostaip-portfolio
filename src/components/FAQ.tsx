@@ -14,15 +14,15 @@ export default function FAQ() {
     };
 
     return (
-        <section id="faq" className="py-24 px-6 bg-white dark:bg-neutral-950 border-t border-neutral-100 dark:border-neutral-900">
+        <section id="faq" className="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
             <div className="max-w-4xl mx-auto">
                 <ScrollReveal>
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-bold text-neutral-900 dark:text-white mb-6">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
                             {t.faq.title}
                         </h2>
-                        <p className="text-neutral-500 dark:text-neutral-400">
-                            Tudo o que você precisa saber sobre o desenvolvimento.
+                        <p className="text-neutral-400">
+                            {t.faq.description}
                         </p>
                     </div>
                 </ScrollReveal>
@@ -32,8 +32,8 @@ export default function FAQ() {
                         <ScrollReveal key={idx} delay={idx * 50}>
                             <div
                                 className={`border rounded-2xl transition-all duration-300 ${openIndex === idx
-                                    ? "border-red-500/30 bg-red-50/50 dark:bg-red-900/10"
-                                    : "border-neutral-200 dark:border-neutral-800 bg-transparent hover:border-neutral-300 dark:hover:border-neutral-700"
+                                    ? "border-red-500/30 bg-red-900/10"
+                                    : "border-zinc-800 bg-transparent hover:border-zinc-700"
                                     }`}
                             >
                                 <button
@@ -41,11 +41,11 @@ export default function FAQ() {
                                     className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
                                     aria-expanded={openIndex === idx}
                                 >
-                                    <span className={`text-lg font-bold transition-colors ${openIndex === idx ? "text-red-600 dark:text-red-400" : "text-neutral-900 dark:text-neutral-200"
+                                    <span className={`text-lg font-bold transition-colors ${openIndex === idx ? "text-red-400" : "text-white"
                                         }`}>
                                         {item.question}
                                     </span>
-                                    <span className={`p-2 rounded-full transition-colors ${openIndex === idx ? "bg-red-500 text-white" : "bg-neutral-100 dark:bg-neutral-800 text-neutral-500"
+                                    <span className={`p-2 rounded-full transition-colors ${openIndex === idx ? "bg-red-600 text-white" : "bg-zinc-800 text-zinc-500"
                                         }`}>
                                         {openIndex === idx ? <Minus size={16} /> : <Plus size={16} />}
                                     </span>
@@ -55,7 +55,7 @@ export default function FAQ() {
                                     className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === idx ? "max-h-96 opacity-100 pb-6 px-6" : "max-h-0 opacity-0"
                                         }`}
                                 >
-                                    <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                                    <p className="text-neutral-400 leading-relaxed">
                                         {item.answer}
                                     </p>
                                 </div>

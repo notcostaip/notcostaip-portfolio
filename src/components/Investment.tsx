@@ -58,7 +58,7 @@ export default function Investment() {
                                             <span className={clsx("text-5xl font-bold tracking-tighter", isRecommended ? "text-white" : "text-neutral-900 dark:text-white")}>
                                                 {card.price}
                                             </span>
-                                            <span className={clsx("text-xs", isRecommended ? "text-neutral-400" : "text-neutral-500")}>/único</span>
+                                            <span className={clsx("text-xs", isRecommended ? "text-neutral-400" : "text-neutral-500")}>{t.investment.priceSuffix}</span>
                                         </div>
                                         <p className={clsx("mt-4 text-sm leading-relaxed", isRecommended ? "text-neutral-300" : "text-neutral-500 dark:text-neutral-400")}>
                                             {card.desc}
@@ -75,7 +75,7 @@ export default function Investment() {
                                     </ul>
 
                                     <Link
-                                        href={`https://wa.me/5561994503567?text=Ol%C3%A1%2C%20Pablo!%20Tenho%20interesse%20no%20pacote%20${encodeURIComponent(card.title + " " + card.tag)}.%20Podemos%20negociar%3F`}
+                                        href={`https://wa.me/5561994503567?text=${encodeURIComponent(t.investment.whatsappMessage.replace("{0}", card.title).replace("{1}", card.tag))}`}
                                         target="_blank"
                                         className={clsx(
                                             "block w-full py-4 text-center rounded-xl font-bold transition-all text-sm group-hover:shadow-lg",
@@ -84,7 +84,7 @@ export default function Investment() {
                                                 : "bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-900 dark:text-white"
                                         )}
                                     >
-                                        Solicitar Orçamento
+                                        {t.investment.cta}
                                     </Link>
 
                                 </div>

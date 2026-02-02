@@ -54,7 +54,7 @@ export default function Navbar() {
                 </Link>
 
                 {/* Desktop Links */}
-                <div className="hidden md:flex items-center gap-1 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-md px-2 py-1.5 rounded-full border border-neutral-200/50 dark:border-neutral-800/50 shadow-sm">
+                <div className="hidden md:flex items-center gap-6">
                     {navItems.map((item, idx) => (
                         <Link
                             key={idx}
@@ -90,11 +90,9 @@ export default function Navbar() {
                                     }
                                 }
                             }}
-                            className="px-4 py-2 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-all relative group rounded-full hover:bg-white dark:hover:bg-neutral-800 cursor-pointer"
+                            className="text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-red-600 dark:hover:text-red-500 transition-colors relative group"
                         >
                             {item.label}
-                            {/* Hover Micro-interaction */}
-                            <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-red-600 rounded-full transition-all group-hover:w-1/2 opacity-0 group-hover:opacity-100"></span>
                         </Link>
                     ))}
                 </div>
@@ -134,12 +132,13 @@ export default function Navbar() {
                     </div>
 
                     {/* Hire Me Button */}
+                    {/* Hire Me Button */}
                     <Link
-                        href="https://wa.me/5561994503567?text=Ol%C3%A1%2C%20Pablo!%20Estou%20buscando%20um%20especialista%20em%20Desenvolvimento%20Web%20para%20uma%20demanda%20espec%C3%ADfica.%20Podemos%20falar%3F"
+                        href={`https://wa.me/5561994503567?text=${encodeURIComponent(t.nav?.whatsappMessage || "")}`}
                         target="_blank"
                         className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-full transition-all shadow-lg shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-0.5"
                     >
-                        {t.nav?.hireMe || "Contrate-me"}
+                        {t.nav?.hireMe || "Solicitar Consultoria"}
                     </Link>
                 </div>
 

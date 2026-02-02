@@ -18,7 +18,7 @@ export default function ProjectsPage() {
                 <ScrollReveal>
                     <div className="mb-6">
                         <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            {t.projectsPage.title.split(" ")[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-rose-400">{t.projectsPage.title.split(" ").slice(1).join(" ")}</span>
+                            {t.projectsPage.title.split(" ")[0]} <span className="text-red-500">{t.projectsPage.title.split(" ").slice(1).join(" ")}</span>
                         </h1>
                         <p className="text-neutral-400 text-lg max-w-2xl leading-relaxed">
                             {t.projectsPage.description}
@@ -59,8 +59,8 @@ export default function ProjectsPage() {
                             <div className="p-8">
                                 <div className="flex items-start justify-between gap-4 mb-4">
                                     <div>
-                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors">{project.title}</h3>
-                                        <p className="text-neutral-400 text-sm line-clamp-2">{project.subtitle[language]}</p>
+                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors">{project.title}</h3>
+                                        <p className="text-red-500 text-sm line-clamp-2">{project.subtitle[language]}</p>
                                     </div>
                                     <div className="p-3 bg-neutral-800/50 rounded-xl text-neutral-400 group-hover:bg-red-500/10 group-hover:text-red-400 transition-colors">
                                         <Layout size={20} />

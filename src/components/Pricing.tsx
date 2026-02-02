@@ -12,7 +12,7 @@ export default function Pricing() {
                 <ScrollReveal>
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-                            Planos de Manutenção & Evolução
+                            Manutenção & Evolução
                         </h2>
                         <p className="text-neutral-400 max-w-2xl mx-auto text-lg">
                             Hospedagem de alta performance, segurança e suporte contínuo para seu projeto nunca parar.
@@ -46,7 +46,7 @@ export default function Pricing() {
                                     "Suporte via E-mail (Horário Comercial)",
                                 ].map((item, i) => (
                                     <li key={i} className="flex items-start gap-3 text-neutral-300 text-sm">
-                                        <Check className="text-neutral-500 shrink-0" size={18} />
+                                        <Check className="text-green-500 shrink-0" size={18} />
                                         <span>{item}</span>
                                     </li>
                                 ))}
@@ -135,7 +135,7 @@ export default function Pricing() {
                                     "Prioridade Máxima ao Suporte",
                                 ].map((item, i) => (
                                     <li key={i} className="flex items-start gap-3 text-neutral-300 text-sm">
-                                        <Check className="text-neutral-500 shrink-0" size={18} />
+                                        <Check className="text-green-500 shrink-0" size={18} />
                                         <span>{item}</span>
                                     </li>
                                 ))}
