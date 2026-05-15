@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+<!-- HEADER BANNER -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7f1d1d,50:dc2626,100:991b1b&height=230&section=header&text=Meu%20Portf%C3%B3lio&fontSize=80&fontColor=ffffff&animation=twinkling&fontAlignY=35&desc=Showcase%20de%20Projetos%20%26%20Habilidades&descAlignY=55&descSize=18&descColor=fca5a5" />
 
-First, run the development server:
+<br/>
 
+<!-- BADGES -->
+<div>
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+</div>
+
+<br/>
+
+Repositório contendo o código fonte do meu **Portfólio Pessoal**, desenvolvido com as tecnologias mais modernas do ecossistema React.
+
+</div>
+
+<br/>
+
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
+
+<!-- TECH STACK -->
+<div align="center">
+
+### &nbsp; 🛠️ Tech Stack
+
+<br/>
+
+<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind&theme=dark" alt="Tech" />
+
+<br/><br/>
+
+</div>
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Language:** TypeScript
+- **Fonts:** [Geist](https://vercel.com/font) via `next/font`
+
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
+
+<!-- HOW TO RUN -->
+<div align="center">
+
+### &nbsp; 📦 Como rodar localmente
+
+</div>
+
+### 1. Instale as dependências
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Inicie o servidor de desenvolvimento
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Acesso
+Abra seu navegador em [http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<!-- RED ANIMATED DIVIDER -->
+<img src="https://raw.githubusercontent.com/notcostaip/notcostaip/main/assets/red-divider.svg" width="100%">
 
-## Learn More
+<!-- DEPLOYMENT -->
+<div align="center">
 
-To learn more about Next.js, take a look at the following resources:
+### &nbsp; 🌐 Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+</div>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+A aplicação é otimizada e publicada diretamente na **Vercel** usando Serverless Functions.
 
-## Deploy on Vercel
+<br/>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<!-- FOOTER -->
+<div align="center">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7f1d1d,50:dc2626,100:991b1b&height=130&section=footer" />
+
+<br/>
+
+**Feito por [Costa](https://github.com/notcostaip) com ☕ e muita diversão.**
+
+</div>
