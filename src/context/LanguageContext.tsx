@@ -23,13 +23,11 @@ export const languagesList = [
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const [currentLangCode, setCurrentLangCode] = useState<Language>("PT");
 
-    // Load language from local storage on mount
     useEffect(() => {
-        const saved = localStorage.getItem("language") as Language;
-        if (saved && ["PT", "EN", "ES", "FR", "ZH"].includes(saved)) {
-            setCurrentLangCode(saved);
-            document.documentElement.lang = saved === "PT" ? "pt-BR" : saved === "ZH" ? "zh-CN" : saved.toLowerCase();
-        }
+        const saved = localStorage.getItem("language") as Language | null;
+        if (!saved || !["PT", "EN", "ES", "FR", "ZH"].includes(saved)) return;
+        const frame = window.requestAnimationFrame(() => setCurrentLangCode(saved));
+        return () => window.cancelAnimationFrame(frame);
     }, []);
 
     useEffect(() => {

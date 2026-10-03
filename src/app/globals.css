@@ -1,16 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter);
+  --font-sans: "Inter", "SF Pro Display", "Segoe UI", Arial, sans-serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 96px;
   }
 
   body {
     @apply bg-gray-50 text-neutral-900 antialiased transition-colors duration-300;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #ef4444;
+    outline-offset: 4px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
   }
 
   :root.dark body {
@@ -48,6 +62,136 @@
     -webkit-text-fill-color: #ffffff !important;
     caret-color: #ffffff !important;
     transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+.red-braces {
+  color: #ef233c;
+  font-weight: 800;
+}
+
+.hero-grid {
+  isolation: isolate;
+}
+
+.hero-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 96%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 96%);
+}
+
+#google_translate_element {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+body > .skiptranslate,
+iframe.skiptranslate,
+iframe[class*="VIpgJd-ZVi9od-ORHb"] {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  border: 0 !important;
+}
+
+html,
+body {
+  top: 0 !important;
+}
+
+html.translation-pending,
+html.translation-pending body {
+  cursor: progress;
+}
+
+html.translation-pending *,
+html.translation-pending *::before,
+html.translation-pending *::after {
+  animation-play-state: paused !important;
+  transition-duration: 0s !important;
+}
+
+main > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+.section-kicker {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #f87171;
+}
+
+@keyframes cursor-blink {
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
+}
+
+@keyframes terminal-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -50%, 0); }
+}
+
+@keyframes brand-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-33.333%, 0, 0); }
+}
+
+.animate-brand-marquee {
+  animation: brand-marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.brand-marquee:hover {
+  animation-play-state: paused;
+}
+
+.terminal-cursor {
+  animation: cursor-blink 0.82s steps(1) infinite;
+}
+
+.terminal-stream {
+  animation: terminal-scroll 42s linear infinite;
+  will-change: transform;
+}
+
+.system-log-bg {
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(239, 35, 60, 0.12), transparent 30%),
+    radial-gradient(circle at 85% 12%, rgba(127, 12, 31, 0.1), transparent 28%),
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

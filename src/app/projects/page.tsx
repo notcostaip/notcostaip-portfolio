@@ -1,89 +1,52 @@
-"use client";
-
-import { projects } from "@/data/projectsData";
-import { ArrowRight, Layout } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { useLanguage } from "@/context/LanguageContext";
-import ScrollReveal from "@/components/ScrollReveal";
+import { ArrowUpRight, Code2, GitBranch, Github, Star } from "lucide-react";
+import MotionReveal from "@/components/MotionReveal";
+
+export const metadata: Metadata = {
+  title: "Projetos no GitHub",
+  description: "Código, experimentos e projetos open source de notcostaip no GitHub.",
+  alternates: { canonical: "/projects" },
+};
+
+const signals = [
+  { icon: Code2, label: "Full stack systems" },
+  { icon: GitBranch, label: "Build in public" },
+  { icon: Star, label: "Products & experiments" },
+];
 
 export default function ProjectsPage() {
-    const { t, language } = useLanguage();
+  return (
+    <main className="min-h-screen overflow-hidden bg-[#080808] px-5 pb-24 pt-32 text-white sm:px-7 md:px-10 md:pt-40 xl:px-14">
+      <div className="mx-auto max-w-[1500px]">
+        <MotionReveal>
+          <p className="section-kicker">Repository / public work</p>
+          <h1 className="mt-6 max-w-6xl text-5xl font-semibold leading-[.9] tracking-[-.06em] sm:text-6xl md:text-9xl xl:text-[10rem]">O código fala no <span className="text-red-500">GitHub.</span></h1>
+          <p className="mt-9 max-w-2xl text-lg leading-8 text-neutral-500 md:text-xl">Esta página não replica repositórios. Ela é uma porta direta para o lugar onde projetos, experimentos e evolução técnica acontecem em público.</p>
+        </MotionReveal>
 
-    return (
-        <div className="min-h-screen pt-32 pb-20 px-6">
-
-            {/* Header */}
-            <div className="max-w-6xl mx-auto mb-16">
-                <ScrollReveal>
-                    <div className="mb-6">
-                        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                            {t.projectsPage.title.split(" ")[0]} <span className="text-red-500">{t.projectsPage.title.split(" ").slice(1).join(" ")}</span>
-                        </h1>
-                        <p className="text-neutral-400 text-lg max-w-2xl leading-relaxed">
-                            {t.projectsPage.description}
-                        </p>
-                    </div>
-                </ScrollReveal>
+        <MotionReveal delay={0.1} className="mt-16">
+          <Link href="https://github.com/notcostaip" target="_blank" rel="noreferrer" className="group relative block overflow-hidden rounded-[2.75rem] border border-white/10 bg-[#0d0d0f] p-7 transition duration-500 hover:-translate-y-2 hover:border-red-500/40 active:translate-y-0 md:p-14">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(239,35,60,.2),transparent_35%)] opacity-70 transition duration-700 group-hover:opacity-100" />
+            <div className="relative flex min-h-[380px] flex-col justify-between md:min-h-[460px]">
+              <div className="flex items-start justify-between">
+                <div className="grid h-16 w-16 place-items-center rounded-2xl border border-white/10 bg-white/[.04]"><Github size={32} /></div>
+                <ArrowUpRight size={34} className="text-neutral-600 transition duration-500 group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:text-red-400" />
+              </div>
+              <div>
+                <div className="mb-10 grid gap-3 sm:grid-cols-3">
+                  {signals.map(({ icon: Icon, label }) => <span key={label} className="flex items-center gap-3 rounded-2xl border border-white/[.08] bg-black/30 px-4 py-4 text-xs text-neutral-400"><Icon size={16} className="text-red-400" />{label}</span>)}
+                </div>
+                <p translate="no" className="notranslate font-mono text-[10px] uppercase tracking-[.25em] text-red-400">github.com/notcostaip</p>
+                <h2 className="mt-4 text-4xl font-semibold tracking-[-.045em] md:text-7xl">Explorar todos os repositórios</h2>
+                <span className="mt-8 inline-flex items-center gap-3 rounded-full bg-red-600 px-6 py-3.5 text-sm font-bold text-white shadow-[0_16px_50px_rgba(220,38,38,.28)] transition group-hover:bg-white group-hover:text-black">
+                  Clique aqui para abrir meu GitHub <ArrowUpRight size={17} />
+                </span>
+              </div>
             </div>
-
-            {/* Projects Grid */}
-            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                {projects.map((project, index) => (
-                    <ScrollReveal key={project.id} delay={index * 100}>
-                        <Link
-                            href={`/projects/${project.slug}`}
-                            className="group block bg-neutral-900/30 border border-neutral-800/50 rounded-3xl overflow-hidden hover:border-red-500/30 transition-all duration-500 hover:bg-neutral-900/50"
-                        >
-                            {/* Image */}
-                            <div className="aspect-video bg-neutral-900 relative overflow-hidden">
-                                {project.coverImage && (
-                                    <Image
-                                        src={project.coverImage}
-                                        alt={project.title}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 50vw"
-                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                )}
-                                <div className="absolute inset-0 bg-neutral-900/20 group-hover:bg-neutral-900/40 transition-colors" />
-
-                                {/* Overlay on hover */}
-                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <span className="px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-white font-medium flex items-center gap-2 border border-white/20">
-                                        {t.projectsPage.viewDetails} <ArrowRight size={16} />
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="p-8">
-                                <div className="flex items-start justify-between gap-4 mb-4">
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-red-500 transition-colors">{project.title}</h3>
-                                        <p className="text-red-500 text-sm line-clamp-2">{project.subtitle[language]}</p>
-                                    </div>
-                                    <div className="p-3 bg-neutral-800/50 rounded-xl text-neutral-400 group-hover:bg-red-500/10 group-hover:text-red-400 transition-colors">
-                                        <Layout size={20} />
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-wrap gap-2 mt-6">
-                                    {project.technologies.slice(0, 3).map((tech) => (
-                                        <span key={tech} className="px-3 py-1 bg-neutral-950 border border-neutral-800 rounded-full text-xs text-neutral-400">
-                                            {tech}
-                                        </span>
-                                    ))}
-                                    {project.technologies.length > 3 && (
-                                        <span className="px-3 py-1 bg-neutral-950 border border-neutral-800 rounded-full text-xs text-neutral-400">
-                                            +{project.technologies.length - 3}
-                                        </span>
-                                    )}
-                                </div>
-                            </div>
-                        </Link>
-                    </ScrollReveal>
-                ))}
-            </div>
-        </div>
-    );
+          </Link>
+        </MotionReveal>
+      </div>
+    </main>
+  );
 }

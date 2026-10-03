@@ -1,0 +1,33 @@
+# Pablo Henrick Costa Silva — notcostaip
+
+> Site oficial, perfil público, portfólio e mapa de conhecimento de Pablo Henrick Costa Silva, também conhecido como notcostaip.
+
+## Identidade pública
+
+- Nome: Pablo Henrick Costa Silva
+- Nome público e usuário: notcostaip
+- CNPJ público: 60.778.755/0001-43
+- Localização: Brasília, Distrito Federal, Brasil
+- Atuação: desenvolvimento full stack, criação de SaaS, inteligência artificial, automação empresarial e operação de e-commerce
+- Site oficial: https://notcostaip.site
+
+## Páginas principais
+
+- História: https://notcostaip.site/historia
+- System Log e perfil semântico: https://notcostaip.site/system-log
+- Projetos públicos: https://notcostaip.site/projects
+- Serviços: https://notcostaip.site/servicos
+- ColdconnectPay: https://notcostaip.site/negocios/coldconnectpay
+- iSHOPBOX: https://notcostaip.site/negocios/ishopbox
+
+## Produtos e operações
+
+- ColdconnectPay é um produto que conecta CRM, prospecção, automação, inteligência artificial e pagamentos.
+- iSHOPBOX é a loja de e-commerce de Pablo Henrick, operada com dropshipping automatizado e decisões orientadas por produto, oferta, mídia e margem.
+
+## Perfis oficiais
+
+- GitHub: https://github.com/notcostaip
+- Instagram: https://instagram.com/notcostaip
+- X: https://x.com/notcostaip
+- LinkedIn: https://www.linkedin.com/in/notcostaip
